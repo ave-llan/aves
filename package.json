@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "zip" : "zip -r 'aves-skill.zip' *"
+    "zip": "zip -r 'aves-skill.zip' *"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "homepage": "https://github.com/jrleszcz/aves#readme",
   "dependencies": {
     "alexa-sdk": "^1.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^3.4.0"
   }
 }
