@@ -59,7 +59,6 @@ var handlers = {
         speechOutput = speechOutput + followUp
       } else {
         speechOutput = speechOutput + description + '. ' + followUp
-        speechOutput += ' hear the robin sing: <audio src="https://birdsong-skill.s3.amazonaws.com/bird.mp3" /> '
         self.emit(':tellWithCard', speechOutput, SKILL_NAME, randomBird)
       }
     })
