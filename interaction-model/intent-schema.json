@@ -1,0 +1,25 @@
+{
+  "intents": [
+    {
+      "intent": "GetNewBird"
+    },
+    {
+      "intent": "GetBirdInfo",
+      "slots": [
+        {
+          "name": "Bird",
+          "type": "BIRD_SPECIES_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}
