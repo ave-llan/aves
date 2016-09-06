@@ -11,8 +11,8 @@ var SKILL_NAME = 'Aves'
 var BIRDS = require('./data/birds.json')
 
 var intros = [
-  "Here's your bird: ",
-  "Your bird is the "
+  'Here\'s your bird: ',
+  'Your bird is the '
 ]
 
 var follow_ups = [
@@ -39,8 +39,8 @@ var handlers = {
   },
   'GetFact': function () {
     // Get a random space fact from the space facts list
-    var factIndex = Math.floor(Math.random() * BIRDS.length)
-    var randomBird = BIRDS[factIndex].name
+    var birdIndex = Math.floor(Math.random() * BIRDS.length)
+    var randomBird = BIRDS[birdIndex].name
     var intro = intros[Math.floor(intros.length * Math.random())]
     var followUp = follow_ups[Math.floor(follow_ups.length * Math.random())]
 
@@ -49,10 +49,10 @@ var handlers = {
     var self = this
     wiki({
       numSentences: 2,
-      searchTerms: BIRDS[factIndex].sciName
+      searchTerms: BIRDS[birdIndex].sciName
     }, function (error, description) {
-      if (error) {
-        throw new Error(error)
+      if (error || !description) {
+        speechOutput = speechOutput + followUp
       } else {
         speechOutput = speechOutput + description + '. ' + followUp
         self.emit(':tellWithCard', speechOutput, SKILL_NAME, randomBird)
