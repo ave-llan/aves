@@ -59,6 +59,11 @@ var handlers = {
       }
     })
   },
+  'GetBirdInfo': function () {
+    var bird = this.event.request.intent.slots.Bird.value
+    var speechOutput = 'You asked me about the ' + bird + '.'
+    this.emit(':tellWithCard', speechOutput, SKILL_NAME, bird)
+  },
   'AMAZON.HelpIntent': function () {
     var speechOutput = 'You can say, "Aves, give me a bird"... and I\'ll tell you about a bird.'
     var reprompt = 'What can I help you with?'
