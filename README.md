@@ -13,7 +13,11 @@ to generate `aves-skill.zip` which you can upload to AWS lambda.
 make a top level `config.json` file with the following fields:
 ```
 {
-  "APP_ID": "amzn1.echo-sdk-ams.app.[your-unique-value-here]"
+  "APP_ID": "amzn1.echo-sdk-ams.app.[your-unique-value-here]",
+  "accessKeyId": "akid",
+  "secretAccessKey": "secret",
+  "region": "aws-region",
+  "s3BucketName": "your bucket"
 }
 ```
 
