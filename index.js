@@ -60,7 +60,7 @@ var handlers = {
     })
   },
   'AMAZON.HelpIntent': function () {
-    var speechOutput = 'You can say tell me a space fact, or, you can say exit... What can I help you with?'
+    var speechOutput = 'You can say, "Aves, give me a bird"... and I\'ll tell you about a bird.'
     var reprompt = 'What can I help you with?'
     this.emit(':ask', speechOutput, reprompt)
   },
