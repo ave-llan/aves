@@ -23,6 +23,8 @@
   "homepage": "https://github.com/jrleszcz/aves#readme",
   "dependencies": {
     "alexa-sdk": "^1.0.5",
+    "aws-sdk": "^2.5.5",
+    "follow-redirects": "^0.2.0",
     "request": "^2.74.0"
   },
   "devDependencies": {

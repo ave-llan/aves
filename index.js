@@ -9,6 +9,10 @@ var SKILL_NAME = 'Aves'
  * Array containing space facts.
  */
 var BIRDS = require('./data/birds.json')
+var birdNames = {}
+BIRDS.forEach(function (bird) {
+  birdNames[bird.name.toLowerCase()] = bird.sciName
+})
 
 var intros = [
   'Here\'s your bird: ',
@@ -55,14 +59,33 @@ var handlers = {
         speechOutput = speechOutput + followUp
       } else {
         speechOutput = speechOutput + description + '. ' + followUp
+        speechOutput += ' hear the robin sing: <audio src="https://birdsong-skill.s3.amazonaws.com/bird.mp3" /> '
         self.emit(':tellWithCard', speechOutput, SKILL_NAME, randomBird)
       }
     })
   },
   'GetBirdInfo': function () {
-    var bird = this.event.request.intent.slots.Bird.value
+    var bird = this.event.request.intent.slots.Bird.value.toLowerCase()
     var speechOutput = 'You asked me about the ' + bird + '.'
-    this.emit(':tellWithCard', speechOutput, SKILL_NAME, bird)
+    if (bird in birdNames) {
+      var self = this
+      wiki({
+        numSentences: 2,
+        searchTerms: birdNames[bird]
+      },
+      function (error, description) {
+        if (error || !description) {
+          speechOutput = 'I couldn\'t find any info about the ' + bird + '.'
+        } else {
+          speechOutput = description
+          self.emit(':tellWithCard', speechOutput, SKILL_NAME, bird)
+        }
+        self.emit(':tellWithCard', speechOutput, SKILL_NAME, bird)
+      })
+    } else {
+      speechOutput = 'I\'m afraid I don\'t know anything about a bird called the ' + bird + '.'
+      this.emit(':tellWithCard', speechOutput, SKILL_NAME, bird)
+    }
   },
   'AMAZON.HelpIntent': function () {
     var speechOutput = 'You can say, "Aves, give me a bird"... and I\'ll tell you about a bird.'
